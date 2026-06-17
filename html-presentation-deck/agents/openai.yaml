@@ -1,0 +1,4 @@
+interface:
+  display_name: "HTML Presentation Deck"
+  short_description: "Build animated React/Vite web presentation decks"
+  default_prompt: "Use $html-presentation-deck to create an animated React/Vite/Tailwind web slide deck from my topic and source material."

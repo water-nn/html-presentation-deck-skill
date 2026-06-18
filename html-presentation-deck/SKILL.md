@@ -27,11 +27,12 @@ Read [architecture.md](references/architecture.md) when choosing the stack or im
 
 Default visual quality comes before adding more features. Unless the user explicitly asks for multiple visual directions, ship one stable default style first.
 
-The default presentation should use a coherent premium dark tech baseline:
+The default presentation should use a coherent original dark tech baseline:
 
-- deep black / graphite background
-- warm-gray body text
-- one primary accent, usually champagne gold or another low-saturation premium accent
+- deep graphite / deep blue-black background, close to black but not pure black
+- cool-gray or slightly warm-white body text that is not overexposed
+- one primary low-saturation cyan / cool-blue tech accent
+- optional warm-gold light only as a small detail, never as the main tone
 - at most 1-2 support colors
 - restrained cards, navigation, buttons, charts, progress, tooltips, and background motion using the same token system
 - visible but quiet motion
@@ -46,6 +47,26 @@ Rules:
 5. Do not sacrifice visual unity just to demonstrate more features.
 6. If the user did not ask for many styles, implement one stable default tone and optionally one experimental tone.
 7. Default build passing is not enough; the first impression must still feel unified, premium, clean, and presentation-ready.
+
+## Original Dark Tech Baseline Rule
+
+Default style should first reference a premium dark technology presentation, not a black-gold luxury launch by default.
+
+- Default baseline should feel like deep slate, graphite, deep navy-black, cool gray, low-saturation cyan-blue, subtle grid, and restrained technology glow.
+- Default baseline should not automatically mean black-gold, champagne-gold, luxury roadshow, finance pitch, or formal gala.
+- Black-gold / champagne can be offered as an optional tone, but it is not the default baseline unless the user explicitly asks for it.
+- Small warm light accents are allowed only as supporting detail; they must not dominate titles, progress, Agenda active states, chart fills, buttons, or card borders.
+- Default URL with no query parameters must stay on the original dark tech baseline.
+
+## Tone Role Correction Rule
+
+Tone presets must have clear roles.
+
+- `Original Dark Tech`, `Deep Slate Tech`, or an equivalent cool dark tech tone is the recommended default for AI, Agent, tooling, and workflow decks.
+- `Obsidian Champagne` is an optional tone, not the default baseline.
+- `Graphite Aurora`, `visual`, and other enhanced looks are experimental or alternate modes unless the user explicitly promotes them.
+- Query variants such as `?tone=champagne`, `?tone=aurora`, and `?theme=visual` must not leak colors, backgrounds, component states, or motion intensity into the no-query default.
+- README, deployment docs, and status docs must name the default baseline correctly so future agents do not reintroduce black-gold as the default.
 
 ## Theme / Tone Isolation Rule
 
@@ -357,8 +378,9 @@ Charts and tables must look like part of the deck, not external widgets.
 Use the same visual system as the presentation:
 
 - Dark surfaces
-- Champagne-gold emphasis
-- Warm-gray grid lines
+- Low-saturation cyan / cool-blue emphasis in the default baseline
+- Cool-gray grid lines
+- Optional warm-gold emphasis only for explicit champagne tone or rare callouts
 - Low-saturation support colors
 - Rounded cards
 - Restrained shadows
@@ -428,11 +450,56 @@ Default navigation should not occupy a large permanent agenda area. Prefer a sli
 Navigation pin/fixed controls should feel like part of the presentation system, not temporary debug buttons.
 
 - Do not use rough one-character visible labels such as `钉` or `锁` as the main control copy.
-- Prefer a compact icon-like control such as `⌖`, `●`, `Pin`, `Pinned`, or clear Chinese labels such as `固定` and `收起`.
+- Prefer a compact icon-like control such as `⌖`, `●`, `Pin`, `ON`, `FIX`, or clear short Chinese labels such as `固定`.
+- Small circular or square pin controls must not display long words. In particular, do not show `PINNED` inside a small button.
+- If a longer state label is required, use a wider pill-shaped button instead of a compact circular/square button.
 - Provide accessible labels or titles such as `固定目录` and `取消固定`.
 - Keep at least `12px-16px` spacing between the rail label and the pin control.
 - Use the same visual language as the nav: rounded shape, refined border, hover, active, focus-visible, and current-state highlight.
 - The control must not touch the rail edge or feel like an afterthought.
+- The control must not overflow its container in either pinned or unpinned state.
+
+## Agenda Panel Spacing Standard
+
+Agenda panels must look deliberate, not squeezed.
+
+- Agenda panel must have a consistent internal safe padding system.
+- The title/header area and the first agenda item must have at least `16px` of clear vertical separation.
+- The first item must never be clipped by the panel header, border, overflow mask, or top padding.
+- Agenda item left and right padding must be visually equal.
+- Number column, title column, and active-state background must share a clear alignment system.
+- Current-item highlight must follow the default tone. In cool dark tech defaults, prefer cyan/blue-gray outline or translucent highlight instead of a thick champagne fill.
+- Agenda may use internal scrolling for many items, but the page/deck itself must remain non-scrolling.
+
+## Pinned Agenda Stage Alignment Rule
+
+Pinned Agenda changes the stage geometry and must be visually reconciled with the main slide.
+
+- When Agenda is pinned, stage and Agenda should share the same vertical safe-area logic.
+- Stage height should feel coordinated with the Agenda panel height; it should not look obviously shorter or more compressed than the navigation.
+- The slide frame must recenter inside the remaining available width.
+- Main content must maintain a safe distance from the bottom progress bar.
+- If content becomes dense while Agenda is pinned, first reduce title size within the allowed clamp, adjust grid rhythm, rebalance columns, split the slide, or use card-level scrolling. Do not let content press into the bottom controls.
+
+## Eyebrow Label Hierarchy Rule
+
+Decorative labels and section labels need a strict hierarchy.
+
+- Each slide should have only one primary eyebrow by default.
+- Do not stack multiple same-level English labels such as section name plus page topic in the same visual position.
+- If both section and page labels are needed, section labels must be smaller, quieter, and spatially separated from the page eyebrow.
+- Decorative labels must not overlap, compete with, or contradict the page title, cards, charts, or body copy.
+- Prefer keeping section names in Agenda/navigation metadata while using the slide eyebrow for the page-level concept.
+
+## Title Container Width Rule
+
+Main titles should share the same content measure as the slide body.
+
+- Slide title containers should default to the full content container width.
+- Do not use a narrow `max-width` on the title when the body grid below is wider; this causes premature wrapping and weak alignment.
+- Long titles should use consistent left/right content edges, `text-wrap: balance` where supported, and responsive `clamp()` sizing.
+- If a title still wraps awkwardly, edit the copy or intentionally split the line; do not let an accidental narrow container decide the line break.
+- During visual QA, compare the title's left and right edges with the main card/chart grid.
 
 ## Decorative Label Safe Area Rule
 
@@ -452,6 +519,8 @@ Split slides must balance visual weight, not merely divide the canvas into two c
 - Left and right sides do not need equal information volume, but they should feel intentionally balanced.
 - Pair text with a diagram, workflow, chart, visual anchor, card cluster, large number, line frame, or background light mass.
 - Avoid one side carrying a heavy chart while the other side has only weak explanatory copy.
+- If one side has a visually dense chart/table, the other side should use a stronger module: a larger donut or diagram, clear conclusion card, metric pair, structured notes, or deliberate 60/40 layout.
+- Right-side cards should not leave large accidental empty areas after a small chart or short copy block; center content or build a clear top/middle/bottom structure.
 - Avoid a large heading occupying one side while the other side feels empty.
 - Choose grid ratios based on content, such as `52/48`, `45/55`, or `40/60`.
 - Every split slide should have clear visual hierarchy and one deliberate focal point.
@@ -500,14 +569,15 @@ When generating HTML presentations, offer or choose a coherent tone preset inste
 
 Recommended tone presets:
 
-1. **Obsidian Champagne / 黑曜香槟**: deep black and warm gray, champagne-gold accents, soft warm light. Best for product launches, brand roadshows, fashion-tech, formal proposals, project reports, and brand storytelling.
-2. **Graphite Aurora / 石墨极光**: graphite black with low-saturation cyan/green aurora glow. Best for AI, toolchains, Agent systems, technical architecture, and workflow diagrams.
-3. **Ink Cyan / 墨黑青蓝**: ink-dark background, cyan-blue accents, visible line frames and grids. Best for data reports, technical analysis, research, and SaaS presentations.
-4. **Velvet Burgundy / 丝绒酒红**: deep burgundy/black-purple background with rose-gold or champagne accents. Best for dramatic launches, creative proposals, art, film, and content projects.
-5. **Porcelain Editorial / 象牙杂志**: ivory and warm gray, black text, gold or dark-gray emphasis. Best for brand manuals, editorial layouts, content plans, and portfolios.
-6. **Sandstone Gallery / 沙岩展厅**: sandstone, warm beige-gray, dark brown, and soft gold. Best for culture, exhibitions, spatial planning, and brand stories.
-7. **Mono Museum / 黑白美术馆**: black, white, and gray with one restrained accent. Best for design proposals, portfolios, research conclusions, and serious talks.
-8. **Signal Lime / 信号青柠**: dark background with restrained low-saturation lime signal color. Best for product demos, developer tools, efficiency products, and growth strategy.
+1. **Deep Slate Tech / Original Dark Tech / 深石墨科技**: deep graphite and deep navy-black, cool-gray text, low-saturation cyan-blue accents, subtle grid and controlled technology glow. Best default for AI, Agent systems, developer tools, workflow launches, system architecture, and technical product presentations.
+2. **Obsidian Champagne / 黑曜香槟**: deep black and warm gray, champagne-gold accents, soft warm light. Best as an optional tone for brand roadshows, fashion-tech, formal proposals, project reports, and brand storytelling. Do not use as the default baseline unless explicitly requested.
+3. **Graphite Aurora / 石墨极光**: graphite black with low-saturation cyan/green aurora glow. Best for experimental AI, toolchains, Agent systems, technical architecture, and workflow diagrams.
+4. **Ink Cyan / 墨黑青蓝**: ink-dark background, cyan-blue accents, visible line frames and grids. Best for data reports, technical analysis, research, and SaaS presentations.
+5. **Velvet Burgundy / 丝绒酒红**: deep burgundy/black-purple background with rose-gold or champagne accents. Best for dramatic launches, creative proposals, art, film, and content projects.
+6. **Porcelain Editorial / 象牙杂志**: ivory and warm gray, black text, gold or dark-gray emphasis. Best for brand manuals, editorial layouts, content plans, and portfolios.
+7. **Sandstone Gallery / 沙岩展厅**: sandstone, warm beige-gray, dark brown, and soft gold. Best for culture, exhibitions, spatial planning, and brand stories.
+8. **Mono Museum / 黑白美术馆**: black, white, and gray with one restrained accent. Best for design proposals, portfolios, research conclusions, and serious talks.
+9. **Signal Lime / 信号青柠**: dark background with restrained low-saturation lime signal color. Best for product demos, developer tools, efficiency products, and growth strategy.
 
 Support query-parameter tone switches such as `?tone=champagne`, `?tone=aurora`, or `?tone=ivory` when feasible. If runtime switching is too costly, at least implement clean CSS tokens so tone changes are straightforward later. Tone choices must not compromise no-scroll layout, readable font sizes, 16:9 stage behavior, visible-but-subtle motion, or chart consistency.
 
@@ -596,9 +666,15 @@ When one or more companion design skills are detected, include this status in th
 After every HTML PPT project, run a `Design QA Pass` before delivery. Check:
 
 - The default theme is visually unified.
+- The default tone is the requested baseline; for AI/Agent technical decks, it should not drift into black-gold unless explicitly requested.
 - The color tone is not mixed or polluted by unrelated themes.
 - Each page reads like a presentation stage, not an ordinary long-form webpage.
 - Layouts are centered, balanced, and free of bottom-heavy, clipped, covered, or edge-pressed content.
+- Split layouts have balanced visual weight across columns.
+- Agenda panel spacing is refined, the first item is not clipped, and pin controls do not overflow.
+- Pinned Agenda mode keeps stage and navigation vertically aligned.
+- Each slide has a clean eyebrow/label hierarchy.
+- Slide title width matches the main content container and does not wrap too early due to accidental max-width.
 - Charts and data visuals feel like part of the presentation design system.
 - Navigation is refined, discoverable, and does not pressure the main content.
 - Dynamic backgrounds are visible enough to add atmosphere but never compete with text.

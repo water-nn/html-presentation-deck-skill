@@ -23,6 +23,62 @@ Build presentation-first web apps rather than traditional PowerPoint files. Pref
 
 Read [architecture.md](references/architecture.md) when choosing the stack or implementing deck behavior. Read [qa-export-deploy.md](references/qa-export-deploy.md) before final verification, PDF export, or deployment.
 
+## Default Visual Baseline Rule
+
+Default visual quality comes before adding more features. Unless the user explicitly asks for multiple visual directions, ship one stable default style first.
+
+The default presentation should use a coherent premium dark tech baseline:
+
+- deep black / graphite background
+- warm-gray body text
+- one primary accent, usually champagne gold or another low-saturation premium accent
+- at most 1-2 support colors
+- restrained cards, navigation, buttons, charts, progress, tooltips, and background motion using the same token system
+- visible but quiet motion
+- clear hierarchy, generous safe area, and no dashboard collage feeling
+
+Rules:
+
+1. The default theme must be stable before any experimental theme/tone is added.
+2. New themes or tones must not break or pollute the default theme.
+3. Color systems must be controlled through tokens such as CSS variables.
+4. Charts, cards, navigation, buttons, progress, tooltips, and background must share the same tokens.
+5. Do not sacrifice visual unity just to demonstrate more features.
+6. If the user did not ask for many styles, implement one stable default tone and optionally one experimental tone.
+7. Default build passing is not enough; the first impression must still feel unified, premium, clean, and presentation-ready.
+
+## Theme / Tone Isolation Rule
+
+Theme and tone switches must be isolated.
+
+- `theme` controls layout or visual-system direction.
+- `tone` controls palette tokens.
+- Default theme must not inherit visual-theme overrides.
+- Default tone must not inherit aurora or other experimental tone colors.
+- Each tone must define clear tokens for text, muted text, primary accent, secondary accent, panels, borders, background motion, and chart palette.
+- Components should consume CSS variables, not hard-code unrelated colors internally.
+- Query variants such as `?theme=visual`, `?tone=aurora`, and `?theme=visual&tone=aurora` may exist, but the no-query default URL remains the baseline to protect.
+
+## Visual Regression Rule
+
+Every feature change requires a visual regression check.
+
+- `npm run build` passing does not prove visual quality.
+- After adding motion, tone, charts, navigation, or controls, re-check the default theme.
+- If a user says the deck is worse than the first version, stop adding features and return to the baseline first.
+- Keep a named baseline such as `Default Premium Dark Tech Baseline` or `Base Dark Tech Standard` as the reference.
+- Do not let charts, backgrounds, navigation, and cards feel like different products.
+
+## Tone Preset Practical Rule
+
+It is fine to plan many tone presets, but a real project does not need to implement them all at once.
+
+- Default implementation should include one stable main tone.
+- Optionally include one experimental tone.
+- Future tones can remain documented in the skill.
+- Do not let too many tones make the current project visually noisy.
+- When maintenance cost rises, reduce active tone count before compromising the default theme.
+
 ## Default Deliverables
 
 For every React/Vite/Tailwind web presentation project, provide these files by default unless the user explicitly opts out:
@@ -501,18 +557,45 @@ Fullscreen mode must adapt the layout, not merely call the browser Fullscreen AP
 - Listen for `fullscreenchange` and update state/class names when needed.
 - Test or inspect fullscreen layout before final delivery when browser tooling is available.
 
-## Design Skill Integration
+## Optional Companion Design Skills
 
-Before designing or modifying the deck, check whether any of these or similar UI/UX skills are installed:
+Before generating, redesigning, or optimizing an HTML PPT, check whether any of these optional companion design skills are installed:
 
 - `ui-ux-pro-max-skill`
 - `design-ux-researcher`
 - `design-ui-designer`
 - `frontend-design`
 
-If found, use their principles for information architecture, visual hierarchy, alignment, spacing, interaction feedback, accessibility, presentation readability, high-end UI aesthetics, and responsive adaptation.
+These skills provide optional design backing, not hard dependencies. If none are installed, do not fail, do not interrupt the task, and continue with this skill's built-in design rules. In the final output, state: "未检测到外部 UI/UX 设计类 skill，本次按 html-presentation-deck 内置设计标准执行。"
 
-If none are installed, do not fail. State that no auxiliary design skills were detected and proceed using this skill's built-in design rules.
+If any companion design skill is installed, actively reference its design principles before and during HTML PPT work. Focus especially on:
+
+- Information architecture
+- Page visual hierarchy
+- Layout rhythm
+- Whitespace and alignment
+- Color system
+- Typography hierarchy
+- Interaction feedback
+- Accessibility
+- Component consistency
+- Chart visual unity
+- Presentation-room readability
+- Responsive and fullscreen adaptation
+- Visual QA
+
+After each HTML PPT project, run a Design QA Pass. Check:
+
+- The default theme is unified.
+- The tone is not visually chaotic.
+- The page feels like a presentation stage, not a normal webpage.
+- Nothing is accidentally off-center, unbalanced, bottom-stuck, clipped, or covered.
+- Charts feel like part of the presentation document.
+- Navigation is refined and does not pressure the main content.
+- Background motion is visible but does not compete with content.
+- Font sizes are suitable for audience reading from a distance.
+
+If companion design skills were used, state in the final output: "已参考本机设计类 companion skills 进行 Design QA。"
 
 ## Content And Layout
 

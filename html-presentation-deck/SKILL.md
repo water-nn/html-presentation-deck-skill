@@ -559,43 +559,51 @@ Fullscreen mode must adapt the layout, not merely call the browser Fullscreen AP
 
 ## Optional Companion Design Skills
 
-Before generating, redesigning, or optimizing an HTML PPT, check whether any of these optional companion design skills are installed:
+Before designing, generating, or optimizing an HTML PPT, check whether any of these optional design companion skills are installed:
 
 - `ui-ux-pro-max-skill`
+- `ui-ux-pro-max`
 - `design-ux-researcher`
 - `design-ui-designer`
 - `frontend-design`
 
-These skills provide optional design backing, not hard dependencies. If none are installed, do not fail, do not interrupt the task, and continue with this skill's built-in design rules. In the final output, state: "未检测到外部 UI/UX 设计类 skill，本次按 html-presentation-deck 内置设计标准执行。"
+These skills are optional design references, not hard dependencies. If none are installed, do not fail, do not interrupt the task, and continue with the built-in `html-presentation-deck` design standards.
 
-If any companion design skill is installed, actively reference its design principles before and during HTML PPT work. Focus especially on:
+If companion design skills are installed, reference them before and after deck work, especially for:
 
 - Information architecture
 - Page visual hierarchy
 - Layout rhythm
 - Whitespace and alignment
 - Color system
-- Typography hierarchy
+- Type hierarchy
+- Component consistency
 - Interaction feedback
 - Accessibility
-- Component consistency
 - Chart visual unity
 - Presentation-room readability
 - Responsive and fullscreen adaptation
 - Visual QA
 
-After each HTML PPT project, run a Design QA Pass. Check:
+When no external UI/UX design skills are detected, include this status in the final response:
 
-- The default theme is unified.
-- The tone is not visually chaotic.
-- The page feels like a presentation stage, not a normal webpage.
-- Nothing is accidentally off-center, unbalanced, bottom-stuck, clipped, or covered.
-- Charts feel like part of the presentation document.
-- Navigation is refined and does not pressure the main content.
-- Background motion is visible but does not compete with content.
-- Font sizes are suitable for audience reading from a distance.
+`未检测到外部 UI/UX 设计类 skill，本次按 html-presentation-deck 内置设计标准执行。`
 
-If companion design skills were used, state in the final output: "已参考本机设计类 companion skills 进行 Design QA。"
+When one or more companion design skills are detected, include this status in the final response and list the detected skills:
+
+`已参考本机 design companion skills 进行 Design QA。`
+
+After every HTML PPT project, run a `Design QA Pass` before delivery. Check:
+
+- The default theme is visually unified.
+- The color tone is not mixed or polluted by unrelated themes.
+- Each page reads like a presentation stage, not an ordinary long-form webpage.
+- Layouts are centered, balanced, and free of bottom-heavy, clipped, covered, or edge-pressed content.
+- Charts and data visuals feel like part of the presentation design system.
+- Navigation is refined, discoverable, and does not pressure the main content.
+- Dynamic backgrounds are visible enough to add atmosphere but never compete with text.
+- Font sizes work for audience viewing at a distance.
+- Theme and tone variants do not leak into the default deck style.
 
 ## Content And Layout
 

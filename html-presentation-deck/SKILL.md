@@ -32,8 +32,9 @@ The default presentation should use a coherent original dark tech baseline:
 - deep graphite / deep blue-black background, close to black but not pure black
 - cool-gray or slightly warm-white body text that is not overexposed
 - one primary low-saturation cyan / cool-blue tech accent
+- a controlled support palette such as electric blue, muted violet-blue, teal, restrained amber, and soft coral
 - optional warm-gold light only as a small detail, never as the main tone
-- at most 1-2 support colors
+- 4-6 coordinated chart colors are allowed when they come from the same token system
 - restrained cards, navigation, buttons, charts, progress, tooltips, and background motion using the same token system
 - visible but quiet motion
 - clear hierarchy, generous safe area, and no dashboard collage feeling
@@ -57,6 +58,53 @@ Default style should first reference a premium dark technology presentation, not
 - Black-gold / champagne can be offered as an optional tone, but it is not the default baseline unless the user explicitly asks for it.
 - Small warm light accents are allowed only as supporting detail; they must not dominate titles, progress, Agenda active states, chart fills, buttons, or card borders.
 - Default URL with no query parameters must stay on the original dark tech baseline.
+
+## Rich Dark Tech Palette Rule
+
+Default premium dark tech does not mean monochrome cold gray. For AI, Agent, workflow, and technical launch decks, the no-query default can use a richer but controlled palette.
+
+Use design tokens for the full palette:
+
+- deep graphite / deep blue-black background
+- translucent dark panel surfaces
+- warm-white or cool-white primary text
+- blue-gray / cool-gray secondary text
+- cyan / tech cyan primary accent
+- electric blue secondary accent
+- muted violet-blue tertiary accent for spatial glow
+- restrained amber for rare emphasis only
+- teal-green for success / quality states
+- soft coral for risk / warning states
+- 4-6 coordinated chart colors from the same palette
+
+Rules:
+
+1. Default dark tech should not be over-corrected from black-gold into flat cold gray.
+2. Cyan, electric blue, muted violet, teal, amber, and soft coral are allowed when each color has a role.
+3. All colors must be controlled through CSS variables, design tokens, or equivalent theme primitives.
+4. Charts may use 4-6 coordinated colors, but they must not use random dashboard defaults.
+5. Amber / champagne may appear as a small callout or key-node accent, but it must not dominate the default theme.
+6. Backgrounds may use low-opacity cyan glow, blue/violet haze, grid, particles, or light streaks to create depth.
+7. Richness should clarify hierarchy, section rhythm, and data meaning; it should not become decoration stacking.
+
+## Color Richness Without Chaos Rule
+
+Color richness must remain disciplined.
+
+- Rich color does not mean high saturation.
+- Rich color does not mean every slide gets a different palette.
+- Rich color must serve information hierarchy, section differentiation, chart expression, and visual rhythm.
+- Default dark tech must avoid both failure modes: too black-gold and too cold-gray monotonous.
+- Use one shared palette across background, cards, Agenda, progress, charts, and controls.
+- Use border color, glow, small labels, icons, and chart marks for differentiation instead of large filled blocks.
+
+Design QA should explicitly check:
+
+- Is the default theme drifting back into black-gold / champagne dominance?
+- Is the default theme too flat, cold-gray, or visually monotonous?
+- Are colors random or disconnected between slides/components?
+- Are chart colors too limited to express data structure?
+- Does the background have enough depth without competing with text?
 
 ## Tone Role Correction Rule
 
@@ -379,6 +427,7 @@ Use the same visual system as the presentation:
 
 - Dark surfaces
 - Low-saturation cyan / cool-blue emphasis in the default baseline
+- Coordinated chart palette such as cyan, electric blue, muted violet, teal, restrained amber, and soft coral when data needs more differentiation
 - Cool-gray grid lines
 - Optional warm-gold emphasis only for explicit champagne tone or rare callouts
 - Low-saturation support colors
@@ -569,15 +618,16 @@ When generating HTML presentations, offer or choose a coherent tone preset inste
 
 Recommended tone presets:
 
-1. **Deep Slate Tech / Original Dark Tech / 深石墨科技**: deep graphite and deep navy-black, cool-gray text, low-saturation cyan-blue accents, subtle grid and controlled technology glow. Best default for AI, Agent systems, developer tools, workflow launches, system architecture, and technical product presentations.
-2. **Obsidian Champagne / 黑曜香槟**: deep black and warm gray, champagne-gold accents, soft warm light. Best as an optional tone for brand roadshows, fashion-tech, formal proposals, project reports, and brand storytelling. Do not use as the default baseline unless explicitly requested.
-3. **Graphite Aurora / 石墨极光**: graphite black with low-saturation cyan/green aurora glow. Best for experimental AI, toolchains, Agent systems, technical architecture, and workflow diagrams.
-4. **Ink Cyan / 墨黑青蓝**: ink-dark background, cyan-blue accents, visible line frames and grids. Best for data reports, technical analysis, research, and SaaS presentations.
-5. **Velvet Burgundy / 丝绒酒红**: deep burgundy/black-purple background with rose-gold or champagne accents. Best for dramatic launches, creative proposals, art, film, and content projects.
-6. **Porcelain Editorial / 象牙杂志**: ivory and warm gray, black text, gold or dark-gray emphasis. Best for brand manuals, editorial layouts, content plans, and portfolios.
-7. **Sandstone Gallery / 沙岩展厅**: sandstone, warm beige-gray, dark brown, and soft gold. Best for culture, exhibitions, spatial planning, and brand stories.
-8. **Mono Museum / 黑白美术馆**: black, white, and gray with one restrained accent. Best for design proposals, portfolios, research conclusions, and serious talks.
-9. **Signal Lime / 信号青柠**: dark background with restrained low-saturation lime signal color. Best for product demos, developer tools, efficiency products, and growth strategy.
+1. **Rich Dark Tech / Original Dark Tech Rich Palette / 深石墨丰富科技**: deep graphite and deep navy-black, cool-gray text, cyan primary accent, electric-blue support, muted violet-blue spatial glow, teal quality states, restrained amber callouts, soft coral risk states, subtle grid and controlled technology glow. Best default for AI, Agent systems, developer tools, workflow launches, system architecture, and technical product presentations.
+2. **Deep Slate Tech / Original Dark Tech / 深石墨科技**: deep graphite and deep navy-black, cool-gray text, low-saturation cyan-blue accents, subtle grid and controlled technology glow. Best when the user asks for a quieter or more minimal dark tech baseline.
+3. **Obsidian Champagne / 黑曜香槟**: deep black and warm gray, champagne-gold accents, soft warm light. Best as an optional tone for brand roadshows, fashion-tech, formal proposals, project reports, and brand storytelling. Do not use as the default baseline unless explicitly requested.
+4. **Graphite Aurora / 石墨极光**: graphite black with low-saturation cyan/green aurora glow. Best for experimental AI, toolchains, Agent systems, technical architecture, and workflow diagrams.
+5. **Ink Cyan / 墨黑青蓝**: ink-dark background, cyan-blue accents, visible line frames and grids. Best for data reports, technical analysis, research, and SaaS presentations.
+6. **Velvet Burgundy / 丝绒酒红**: deep burgundy/black-purple background with rose-gold or champagne accents. Best for dramatic launches, creative proposals, art, film, and content projects.
+7. **Porcelain Editorial / 象牙杂志**: ivory and warm gray, black text, gold or dark-gray emphasis. Best for brand manuals, editorial layouts, content plans, and portfolios.
+8. **Sandstone Gallery / 沙岩展厅**: sandstone, warm beige-gray, dark brown, and soft gold. Best for culture, exhibitions, spatial planning, and brand stories.
+9. **Mono Museum / 黑白美术馆**: black, white, and gray with one restrained accent. Best for design proposals, portfolios, research conclusions, and serious talks.
+10. **Signal Lime / 信号青柠**: dark background with restrained low-saturation lime signal color. Best for product demos, developer tools, efficiency products, and growth strategy.
 
 Support query-parameter tone switches such as `?tone=champagne`, `?tone=aurora`, or `?tone=ivory` when feasible. If runtime switching is too costly, at least implement clean CSS tokens so tone changes are straightforward later. Tone choices must not compromise no-scroll layout, readable font sizes, 16:9 stage behavior, visible-but-subtle motion, or chart consistency.
 

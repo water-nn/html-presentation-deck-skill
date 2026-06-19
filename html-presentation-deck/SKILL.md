@@ -188,6 +188,66 @@ Palette sophistication comes from clear roles, not from color count.
 - Cyan / blue should not be over-bright; violet should not become normal text; amber should not become the default accent; coral should not appear outside risk / warning contexts.
 - Avoid over-correcting from black-gold into cold-gray monotony, and avoid swinging back into colorful disorder.
 
+## Expressive Premium Dark Tech Rule
+
+Premium dark technology style should not become dull cold gray just because the palette is disciplined.
+
+Rules:
+
+1. Premium dark tech should allow natural, expressive dark-space lighting when the brief calls for a product-launch feeling.
+2. The default visual system should feel like a designed AI launch environment, not a mechanical CSS token demo.
+3. Richness should come from spatial light, surface depth, subtle gradients, chart rhythm, and micro-interaction quality.
+4. If a user says the current design feels worse than freer earlier tests, run a visual redesign pass instead of only tweaking a few variables.
+5. The redesign must still preserve the topic, readability, no-scroll slide behavior, navigation, keyboard controls, deployment, and reduced-motion support.
+
+## Premium Gradient Depth Rule
+
+Gradients must create depth, not a flat color wash.
+
+Rules:
+
+1. Avoid plain one-layer linear gradients for default premium dark tech backgrounds.
+2. Use layered radial / linear / conic gradients, oversized blurred glows, subtle grid/noise, and broad transparent falloffs when appropriate.
+3. Top, bottom, and side edges must not show hard bands, black outlines, or blur seams.
+4. Blurred glows and halo layers should extend beyond the viewport.
+5. Stage lighting should be soft and integrated with the palette, never pasted on top of the deck.
+
+## Premium Surface Hover Rule
+
+Surface and hover quality should be visually perceivable, not merely token-correct.
+
+Rules:
+
+1. Card hover should provide clear but restrained premium feedback.
+2. Hover is not only a brighter border; combine surface brightening, border, glow, slight lift, and subtle accent enhancement.
+3. Hover may include a small gradient shift if it does not reduce readability.
+4. Hover must not cause layout jump, resize cards, or make charts harder to read.
+5. Reduced motion must disable lift/complex movement while preserving non-motion state feedback.
+
+## Design Freedom Within Guardrails Rule
+
+When a user explicitly says the current design feels constrained by rules, allow a full visual redesign within the product guardrails.
+
+Rules:
+
+1. Keep the deck theme, story, content model, navigation, and deployment behavior intact.
+2. Palette, gradient system, surface hierarchy, background motion, and hover language may be reorganized.
+3. Do not sacrifice final visual quality merely to keep older token values.
+4. Design QA should judge actual presentation feel: does it look like a premium AI/product launch, is it readable, and is it more compelling than the previous version?
+5. After redesigning, update project docs and status notes so future agents understand the new visual baseline.
+
+## Dynamic Background Hard Edge Rule
+
+Dynamic backgrounds must never reveal a hard top or edge outline.
+
+Rules:
+
+1. The dynamic background must cover the viewport and blend with the app/body/root background.
+2. Blur, glow, halo, mesh, and aurora layers should usually extend beyond the viewport with oversized dimensions or negative inset.
+3. Vignette, overlay, mask, and linear-gradient layers must have soft falloffs and must not create a horizontal black band.
+4. Top controls must visually integrate with the background and must not create a separate dark strip.
+5. QA must inspect the top edge at `1366x768`, fullscreen/simulated fullscreen, and reduced-motion mode when possible.
+
 ## Pinned Agenda Responsive Reflow Rule
 
 Pinned Agenda is a layout mode, not a reason to shrink the whole slide like an image.
@@ -840,6 +900,8 @@ After every HTML PPT project, run a `Design QA Pass` before delivery. Check:
 - Dynamic backgrounds are visible enough to add atmosphere but never compete with text.
 - Dynamic background layers have no hard top or edge seams.
 - Gradient, surface hierarchy, and hover states feel premium rather than flat template defaults.
+- If the user requests freer design, the deck has received a real visual redesign pass rather than token-only edits.
+- Expressive dark tech defaults have spatial light and launch-event depth without becoming neon, black-gold, or dashboard-like.
 - Font sizes work for audience viewing at a distance.
 - Theme and tone variants do not leak into the default deck style.
 
@@ -955,6 +1017,8 @@ Before delivery, verify:
 - PageUp/PageDown, Space, Home, and End work.
 - Dynamic background is visibly present and supports reduced motion.
 - Dynamic background has no visible top-edge, mask, vignette, or blur seam.
+- Top controls do not create a separate horizontal black band or hard edge.
+- Default gradients, surfaces, and hover states are judged by actual visual quality, not only token presence.
 - Side navigation is collapsible.
 - Hover navigation expands and collapses without squeezing the stage.
 - Hover navigation overlays without reflowing the slide frame; pinned navigation may reflow and recenter the stage.

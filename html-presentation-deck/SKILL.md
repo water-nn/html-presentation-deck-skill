@@ -106,6 +106,114 @@ Design QA should explicitly check:
 - Are chart colors too limited to express data structure?
 - Does the background have enough depth without competing with text?
 
+## Subtitle Color Discipline Rule
+
+Subtitle, eyebrow, section label, caption, small-caps label, chart note, page number, and Agenda current text need a controlled color role.
+
+Rules:
+
+1. Main titles should use the primary title text color, not random accent colors.
+2. Subtitle / eyebrow / section label should default to one quiet token such as `--text-eyebrow`.
+3. Captions, chart notes, legends, and auxiliary labels should use a separate quiet token such as `--text-caption`.
+4. Ordinary subtitles must not randomly use cyan, blue, violet, amber, coral, and teal across slides.
+5. Section accents may slightly vary by chapter, but the variation should usually appear in a line, border, icon, or tiny marker, not the whole subtitle text.
+6. Amber / warm gold is for rare callouts only; coral is for risk / warning only; violet is primarily for background space light or rare system diagrams.
+7. Each page should have at most one main accent color in the foreground.
+8. If two English labels compete in one area, remove or quiet one instead of coloring both differently.
+
+## Rich Palette Hierarchy Rule
+
+Rich dark tech palettes must distinguish foreground discipline from background richness.
+
+- Background can be richer: layered deep blue-black, graphite, subtle cyan / blue / violet haze, and low-opacity stage light.
+- Foreground text must stay restrained and consistent.
+- Charts may use a coordinated 4-6 color palette, but ordinary text should not become multicolor.
+- Semantic state colors should appear only when the content carries that state.
+- Color richness should serve information hierarchy, not decorative randomization.
+
+## Premium Gradient System Rule
+
+Premium dark technology decks should not use a single flat black-gray background.
+
+- Use layered, soft, low-opacity gradients to create spatial depth.
+- Radial, linear, and conic gradients may be combined, but transitions must be soft and free of hard edges.
+- Useful layers include deep blue-black base, graphite dark areas, subtle cyan glow, muted violet haze, electric-blue edge light, and tiny warm amber highlights.
+- Background glows should feel like product-launch stage lighting, not a pasted web background.
+- Dynamic light streaks, particles, grids, and noise should blend into the same palette and depth system.
+- Background richness must never reduce text readability or become the focal point.
+
+## Premium Surface System Rule
+
+Dark themes need a surface hierarchy, not one pure-black canvas.
+
+Use tokens such as:
+
+- `--surface-0` for the deepest app background
+- `--surface-1` for stage/background depth
+- `--surface-2` for card and chart glass panels
+- `--surface-3` for hover / active surfaces
+- `--surface-border` for subtle cool-gray / cyan borders
+- `--surface-glow` for restrained cyan / blue glow
+
+Rules:
+
+1. Body, stage, card, navigation, chart panel, and active states should use different but related surface tokens.
+2. Avoid large areas of pure black or a single flat gray.
+3. Glass quality should come from surface opacity, fine borders, blur, shadow, and subtle internal gradients together.
+4. Borders, shadows, and glow must be delicate; thick outlines and loud neon glows feel cheap.
+5. Surface hierarchy should make the deck feel like a mature product launch, not a generic dark web template.
+
+## Premium Hover Interaction Rule
+
+Hover should be refined enough to feel interactive, but not theatrical.
+
+Rules:
+
+1. Card hover should not be so subtle that it feels static, and not so loud that it distracts.
+2. Hover should combine surface lift, slight surface brightening, refined border, restrained glow, and a tiny accent enhancement.
+3. Use transitions around `160ms-240ms` with a restrained curve such as `cubic-bezier(0.22, 1, 0.36, 1)`.
+4. Hover must not affect layout, trigger reflow, or reduce text readability.
+5. Avoid large scale changes and strong neon glow.
+6. Buttons, Agenda items, ordinary cards, chart cards, metric cards, flow nodes, and architecture nodes should share one hover language.
+7. Support `prefers-reduced-motion: reduce`: disable lift/complex movement while retaining border or surface feedback.
+
+## Palette Sophistication Rule
+
+Palette sophistication comes from clear roles, not from color count.
+
+- Use one main foreground accent.
+- Use 2-3 support colors for data, system diagrams, or chapter rhythm.
+- State colors are allowed only for semantic states.
+- Body copy, subtitles, captions, and labels should stay quiet and token-driven.
+- Cyan / blue should not be over-bright; violet should not become normal text; amber should not become the default accent; coral should not appear outside risk / warning contexts.
+- Avoid over-correcting from black-gold into cold-gray monotony, and avoid swinging back into colorful disorder.
+
+## Pinned Agenda Responsive Reflow Rule
+
+Pinned Agenda is a layout mode, not a reason to shrink the whole slide like an image.
+
+Rules:
+
+1. When Agenda is pinned, the shell should behave like a two-column layout: fixed Agenda width plus a remaining stage area.
+2. The main stage should use the remaining width and keep readable content sizes.
+3. Do not use whole-slide `transform: scale(...)`, `zoom`, or fixed `1920x1080` canvases as the default pinned adaptation.
+4. Content should respond through CSS grid, container queries, `clamp()` sizing, card reflow, chart resizing, or local card scrolling.
+5. If content does not fit in pinned mode, first rebalance layout, reduce decoration, split the slide, or use local scrolling. Do not make the entire presentation tiny.
+6. Normal viewport-fit scaling and pinned responsive reflow are separate concerns; do not let pinning trigger full-canvas shrinkage.
+
+## Dynamic Background Edge Rule
+
+Dynamic backgrounds must not show hard top, bottom, or side seams.
+
+Rules:
+
+1. Background layers must cover the full viewport.
+2. Blur / glow layers should extend beyond the viewport, often with `inset: -10%` to `-25%` or oversized dimensions.
+3. Vignettes, masks, radial gradients, and pseudo-elements must not create black hard bands.
+4. Body, root, app shell, and background base colors should align so layer seams do not appear.
+5. If radial gradients are used, their transparent falloff must be broad and soft.
+6. Visual QA must check 1366x768 and fullscreen/simulated fullscreen for top-edge outlines and reduced-motion edge artifacts.
+
 ## Tone Role Correction Rule
 
 Tone presets must have clear roles.
@@ -724,10 +832,14 @@ After every HTML PPT project, run a `Design QA Pass` before delivery. Check:
 - Agenda panel spacing is refined, the first item is not clipped, and pin controls do not overflow.
 - Pinned Agenda mode keeps stage and navigation vertically aligned.
 - Each slide has a clean eyebrow/label hierarchy.
+- Subtitle, eyebrow, caption, and section label colors are disciplined and do not look randomly multicolored.
 - Slide title width matches the main content container and does not wrap too early due to accidental max-width.
 - Charts and data visuals feel like part of the presentation design system.
 - Navigation is refined, discoverable, and does not pressure the main content.
+- Pinned Agenda reflows the content area instead of scaling the whole slide smaller.
 - Dynamic backgrounds are visible enough to add atmosphere but never compete with text.
+- Dynamic background layers have no hard top or edge seams.
+- Gradient, surface hierarchy, and hover states feel premium rather than flat template defaults.
 - Font sizes work for audience viewing at a distance.
 - Theme and tone variants do not leak into the default deck style.
 
@@ -842,9 +954,11 @@ Before delivery, verify:
 - Up/down keyboard navigation works.
 - PageUp/PageDown, Space, Home, and End work.
 - Dynamic background is visibly present and supports reduced motion.
+- Dynamic background has no visible top-edge, mask, vignette, or blur seam.
 - Side navigation is collapsible.
 - Hover navigation expands and collapses without squeezing the stage.
 - Hover navigation overlays without reflowing the slide frame; pinned navigation may reflow and recenter the stage.
+- Pinned navigation uses responsive reflow rather than full-slide transform scaling.
 - Navigation pin/fixed controls are polished and do not use rough labels such as `钉` or `锁`.
 - Decorative labels stay inside safe areas and never overlap primary content.
 - Split layouts are visually balanced.
@@ -861,6 +975,8 @@ Before delivery, verify:
 - Chart animation triggers only for the active slide.
 - Reduced motion lowers or disables chart and background animation.
 - Tone tokens stay consistent across charts, navigation, cards, buttons, progress, and backgrounds.
+- Subtitle / eyebrow / caption tokens stay consistent and do not randomly use accent colors.
+- Hover interactions use a consistent premium surface/border/glow/lift language and respect reduced motion.
 - Side navigation content matches the agenda page.
 - Chart and table components exist or are explicitly planned.
 - Chart and table visuals match the deck design system.

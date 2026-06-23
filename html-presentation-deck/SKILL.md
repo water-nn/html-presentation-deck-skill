@@ -59,6 +59,44 @@ Default style should first reference a premium dark technology presentation, not
 - Small warm light accents are allowed only as supporting detail; they must not dominate titles, progress, Agenda active states, chart fills, buttons, or card borders.
 - Default URL with no query parameters must stay on the original dark tech baseline.
 
+## Original Agent Skill Lab Palette Rule
+
+For AI, Agent, Codex, workflow, and HTML presentation deck projects, the preferred default dark tech palette is the Original Agent Skill Lab palette, also called `agent-lab`.
+
+Reference source:
+
+- Local reference project: `/Users/water/Documents/系统操作/agent-skill-html-deck`
+- Remote reference: `https://water-nn.github.io/agent-skill-html-deck/#/0`
+
+Rules:
+
+1. Treat the early `agent-skill-html-deck` project as the default dark tech color master when the user asks for a premium dark technology HTML PPT.
+2. Default tone should prioritize deep navy, blue black, cyan, teal, muted violet, and indigo.
+3. Default tone must not use black-gold or champagne as the main color language.
+4. Default tone must not collapse into dull cold gray.
+5. Amber / champagne may exist only as an optional tone such as `?tone=champagne`.
+6. Background should include left or upper-left cyan / teal light and right or lower-right muted violet / indigo spatial light.
+7. Main stage should use a deep blue-black / indigo glass panel with subtle grid or line texture.
+8. Agenda active item should use cyan / teal highlight, translucent blue-green fill, and optionally a small violet falloff, not gold.
+9. Card hover should include slight lift, micro scale, brighter border, surface gradient shift, and soft cyan / violet glow.
+10. This palette should be the future default recommendation for HTML PPT decks unless the user explicitly requests another visual baseline.
+
+Recommended token direction:
+
+```css
+--bg-page: #050812;
+--surface-stage: rgba(15, 23, 42, 0.88);
+--surface-agenda: rgba(2, 6, 23, 0.72);
+--text-primary: #f6fbff;
+--text-secondary: #cbd5e1;
+--accent-cyan: #38f8ff;
+--accent-aqua: #4ee6d8;
+--accent-blue: #5cc8ff;
+--accent-violet: #8b5cf6;
+--accent-indigo: #a78bfa;
+--accent-mint: #27f5a7;
+```
+
 ## Rich Dark Tech Palette Rule
 
 Default premium dark tech does not mean monochrome cold gray. For AI, Agent, workflow, and technical launch decks, the no-query default can use a richer but controlled palette.
@@ -177,6 +215,20 @@ Rules:
 6. Buttons, Agenda items, ordinary cards, chart cards, metric cards, flow nodes, and architecture nodes should share one hover language.
 7. Support `prefers-reduced-motion: reduce`: disable lift/complex movement while retaining border or surface feedback.
 
+## Card Hover Visual Language Rule
+
+Default card hover must be perceivable and presentation-ready, especially for web-based PPT decks where cards behave like interactive stage objects.
+
+Rules:
+
+1. Default card hover must not be so conservative that the deck feels static.
+2. Hover should express web-PPT interaction quality, not ordinary dashboard hover.
+3. Hover may combine `translateY(-2px)`, `scale(1.005)` to `scale(1.015)`, brighter border color, cyan / violet glow, and a slight surface gradient shift.
+4. Hover must not affect layout, change measured element size, trigger reflow, or make pinned Agenda jump.
+5. Hover must not over-glow, pulse aggressively, or reduce text readability.
+6. Buttons, Agenda items, chart cards, metric cards, flow nodes, architecture nodes, and repeated information cards should share the same hover language.
+7. `prefers-reduced-motion: reduce` must disable transform/lift while keeping subtle border or surface feedback.
+
 ## Palette Sophistication Rule
 
 Palette sophistication comes from clear roles, not from color count.
@@ -278,11 +330,23 @@ Rules:
 
 Tone presets must have clear roles.
 
-- `Original Dark Tech`, `Deep Slate Tech`, or an equivalent cool dark tech tone is the recommended default for AI, Agent, tooling, and workflow decks.
+- `agent-lab`, `Original Agent Skill Lab Palette`, or an equivalent Original Dark Tech tone is the recommended default for AI, Agent, tooling, Codex, and workflow decks.
 - `Obsidian Champagne` is an optional tone, not the default baseline.
 - `Graphite Aurora`, `visual`, and other enhanced looks are experimental or alternate modes unless the user explicitly promotes them.
 - Query variants such as `?tone=champagne`, `?tone=aurora`, and `?theme=visual` must not leak colors, backgrounds, component states, or motion intensity into the no-query default.
 - README, deployment docs, and status docs must name the default baseline correctly so future agents do not reintroduce black-gold as the default.
+
+## Default Tone Selection Rule
+
+Default query-free tone selection should protect the recommended baseline.
+
+Rules:
+
+1. The no-query default tone should be `agent-lab` or an equivalent Original Agent Skill Lab / Original Dark Tech tone.
+2. `champagne`, `aurora`, `visual`, and other expressive variants are optional tones or themes, not the no-query default.
+3. When a user asks for a "高级深色科技演示页" without additional brand direction, use the `agent-lab` palette by default.
+4. Do not automatically translate "premium", "high-end", or "高级" into black-gold, champagne, or luxury finance styling.
+5. Document the default tone in README, deployment docs, content editing docs, and project status docs so future agents do not drift.
 
 ## Theme / Tone Isolation Rule
 
@@ -786,16 +850,17 @@ When generating HTML presentations, offer or choose a coherent tone preset inste
 
 Recommended tone presets:
 
-1. **Rich Dark Tech / Original Dark Tech Rich Palette / 深石墨丰富科技**: deep graphite and deep navy-black, cool-gray text, cyan primary accent, electric-blue support, muted violet-blue spatial glow, teal quality states, restrained amber callouts, soft coral risk states, subtle grid and controlled technology glow. Best default for AI, Agent systems, developer tools, workflow launches, system architecture, and technical product presentations.
-2. **Deep Slate Tech / Original Dark Tech / 深石墨科技**: deep graphite and deep navy-black, cool-gray text, low-saturation cyan-blue accents, subtle grid and controlled technology glow. Best when the user asks for a quieter or more minimal dark tech baseline.
-3. **Obsidian Champagne / 黑曜香槟**: deep black and warm gray, champagne-gold accents, soft warm light. Best as an optional tone for brand roadshows, fashion-tech, formal proposals, project reports, and brand storytelling. Do not use as the default baseline unless explicitly requested.
-4. **Graphite Aurora / 石墨极光**: graphite black with low-saturation cyan/green aurora glow. Best for experimental AI, toolchains, Agent systems, technical architecture, and workflow diagrams.
-5. **Ink Cyan / 墨黑青蓝**: ink-dark background, cyan-blue accents, visible line frames and grids. Best for data reports, technical analysis, research, and SaaS presentations.
-6. **Velvet Burgundy / 丝绒酒红**: deep burgundy/black-purple background with rose-gold or champagne accents. Best for dramatic launches, creative proposals, art, film, and content projects.
-7. **Porcelain Editorial / 象牙杂志**: ivory and warm gray, black text, gold or dark-gray emphasis. Best for brand manuals, editorial layouts, content plans, and portfolios.
-8. **Sandstone Gallery / 沙岩展厅**: sandstone, warm beige-gray, dark brown, and soft gold. Best for culture, exhibitions, spatial planning, and brand stories.
-9. **Mono Museum / 黑白美术馆**: black, white, and gray with one restrained accent. Best for design proposals, portfolios, research conclusions, and serious talks.
-10. **Signal Lime / 信号青柠**: dark background with restrained low-saturation lime signal color. Best for product demos, developer tools, efficiency products, and growth strategy.
+1. **Original Agent Skill Lab Palette / agent-lab / 原始 Agent Skill Lab 深色科技**: deep navy and blue-black base, upper-left cyan / teal glow, right-side muted violet / indigo spatial light, deep blue-black glass stage, cyan / teal Agenda active states, cyan / mint / violet progress and chart palette, and card hover with slight lift, micro scale, brighter border, and soft cyan / violet glow. Best default for AI, Agent systems, Codex skills, developer tools, workflow launches, system architecture, and technical product presentations.
+2. **Rich Dark Tech / Original Dark Tech Rich Palette / 深石墨丰富科技**: deep graphite and deep navy-black, cool-gray text, cyan primary accent, electric-blue support, muted violet-blue spatial glow, teal quality states, restrained amber callouts, soft coral risk states, subtle grid and controlled technology glow. Best when the user wants a broader rich dark tech palette beyond the agent-lab baseline.
+3. **Deep Slate Tech / Original Dark Tech / 深石墨科技**: deep graphite and deep navy-black, cool-gray text, low-saturation cyan-blue accents, subtle grid and controlled technology glow. Best when the user asks for a quieter or more minimal dark tech baseline.
+4. **Obsidian Champagne / 黑曜香槟**: deep black and warm gray, champagne-gold accents, soft warm light. Best as an optional tone for brand roadshows, fashion-tech, formal proposals, project reports, and brand storytelling. Do not use as the default baseline unless explicitly requested.
+5. **Graphite Aurora / 石墨极光**: graphite black with low-saturation cyan/green aurora glow. Best for experimental AI, toolchains, Agent systems, technical architecture, and workflow diagrams.
+6. **Ink Cyan / 墨黑青蓝**: ink-dark background, cyan-blue accents, visible line frames and grids. Best for data reports, technical analysis, research, and SaaS presentations.
+7. **Velvet Burgundy / 丝绒酒红**: deep burgundy/black-purple background with rose-gold or champagne accents. Best for dramatic launches, creative proposals, art, film, and content projects.
+8. **Porcelain Editorial / 象牙杂志**: ivory and warm gray, black text, gold or dark-gray emphasis. Best for brand manuals, editorial layouts, content plans, and portfolios.
+9. **Sandstone Gallery / 沙岩展厅**: sandstone, warm beige-gray, dark brown, and soft gold. Best for culture, exhibitions, spatial planning, and brand stories.
+10. **Mono Museum / 黑白美术馆**: black, white, and gray with one restrained accent. Best for design proposals, portfolios, research conclusions, and serious talks.
+11. **Signal Lime / 信号青柠**: dark background with restrained low-saturation lime signal color. Best for product demos, developer tools, efficiency products, and growth strategy.
 
 Support query-parameter tone switches such as `?tone=champagne`, `?tone=aurora`, or `?tone=ivory` when feasible. If runtime switching is too costly, at least implement clean CSS tokens so tone changes are straightforward later. Tone choices must not compromise no-scroll layout, readable font sizes, 16:9 stage behavior, visible-but-subtle motion, or chart consistency.
 

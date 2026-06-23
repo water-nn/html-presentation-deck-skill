@@ -300,6 +300,69 @@ Rules:
 4. Top controls must visually integrate with the background and must not create a separate dark strip.
 5. QA must inspect the top edge at `1366x768`, fullscreen/simulated fullscreen, and reduced-motion mode when possible.
 
+## Deep Background Contrast Rule
+
+Default premium dark tech decks should use a deep blue-black outer app background with visible but restrained spatial light.
+
+Rules:
+
+1. The outer app background should feel closer to `#050812`, `#060914`, `#070b18`, or an equivalent deep blue-black than to pure black or flat gray.
+2. Avoid dead black large areas; the background should keep subtle cyan / teal light on the left or upper-left and muted violet / indigo light on the right or lower-right when the deck theme calls for Agent / AI / workflow technology.
+3. Stage and card surfaces should be slightly brighter than the outer app shell so the slide frame reads as a product-launch stage.
+4. Dynamic light layers may become more visible on the deeper base, but they must remain soft, low-opacity, and integrated with the palette.
+5. The top edge must stay seamless; do not create a dark strip above the stage while trying to deepen the background.
+
+## Stage Vertical Space Rule
+
+HTML presentation decks should give the 16:9 stage as much usable vertical space as possible without hiding controls.
+
+Rules:
+
+1. Do not let the top navigation consume excessive height on `1366x768` or `1440x900` screens.
+2. Keep the gap between top controls and the slide stage compact and token-driven.
+3. Prefer moving the stage upward and tuning safe areas before reducing slide content scale.
+4. The slide frame should become taller when vertical whitespace is reduced; do not fake the fix with whole-page `transform: scale(...)`, `zoom`, or a fixed canvas.
+5. Progress UI should stay clear and readable at the bottom without forcing a large unused bottom band.
+6. Pinned Agenda mode may reflow the available width, but it should not reduce the stage height more than necessary.
+
+## Layout Token Rule
+
+Deck chrome and stage spacing should be governed by explicit layout tokens.
+
+Useful tokens include:
+
+- `--app-safe-x`
+- `--app-safe-y`
+- `--topbar-height`
+- `--topbar-to-stage-gap`
+- `--stage-bottom-gap`
+- `--progress-height`
+- `--stage-radius`
+- `--agenda-width`
+- `--stage-left`
+- `--stage-right`
+- `--stage-top`
+- `--stage-bottom`
+
+Rules:
+
+1. Top controls, Agenda, stage, and progress should share the same spacing system instead of each using unrelated `clamp()` values.
+2. When optimizing stage height, update these tokens first so the layout remains explainable and maintainable.
+3. Do not scatter hard-coded vertical offsets across components when a token would express the layout contract.
+4. Responsive adjustments should modify tokens or local grids, not shrink the entire deck as a bitmap.
+
+## Visual Depth Balance Rule
+
+Premium dark decks need balanced depth between background, stage, cards, charts, navigation, and hover states.
+
+Rules:
+
+1. The outer app shell should be deepest, the slide stage should be slightly lifted, and cards/charts/navigation should sit above the stage with refined borders and shadows.
+2. Hover glow should be perceivable on the deeper background, but never become loud neon.
+3. Progress, Agenda, and top controls should feel like parts of the same launch-stage system rather than separate widgets.
+4. Cards should remain readable before and after hover; hover should enhance depth, not change the design language.
+5. Design QA should compare default, pinned Agenda, and fullscreen states to confirm the depth hierarchy remains stable.
+
 ## Pinned Agenda Responsive Reflow Rule
 
 Pinned Agenda is a layout mode, not a reason to shrink the whole slide like an image.

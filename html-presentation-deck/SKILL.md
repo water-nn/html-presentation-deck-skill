@@ -570,6 +570,74 @@ Rules for local scrolling:
 - Style scrollbars so they are subtle and consistent with the deck.
 - Prefer splitting or editing content before adding local card scrolling.
 
+## Card Internal Scroll Rule
+
+When one card has more content than its siblings, only that card may scroll internally.
+
+Rules:
+
+1. The page, app shell, stage, and slide frame must remain non-scrolling.
+2. The card group should keep a coherent shared height; the long card should not stretch the whole row or push other content outside the 16:9 stage.
+3. Use a reusable component such as `ScrollableCard`, `LongContentCard`, or `CardScrollArea` with an explicit height or `max-height`.
+4. The scroll area should use refined, theme-consistent scrollbars and may use subtle top/bottom fade masks.
+5. Internal scroll must work with mouse wheel, trackpad, touch, and keyboard focus.
+6. Card scrolling must not permanently hijack slide navigation; left/right slide keys should continue to work when focus returns to the slide shell.
+7. Reduced motion should disable lift or complex motion but retain subtle border/surface feedback.
+8. Prefer editing, splitting, or structuring content first; use local scrolling only when the card is naturally a dense detail panel.
+
+## Media Content Display Rule
+
+HTML presentation decks may include images, screenshots, diagrams, posters, and videos as first-class slide content.
+
+Rules:
+
+1. Media must live inside a stable aspect-ratio frame so it does not break the 16:9 slide.
+2. Screenshots, designs, charts, and diagrams should default to `object-fit: contain`; atmospheric cover media may use `cover` only when cropping is acceptable.
+3. Media frames should use the deck's radius, border, shadow, caption, fallback, and surface tokens.
+4. Captions should be short and quiet; media should clarify the slide's point rather than become a stock decoration.
+5. Media components should be reusable and documented so users know where to replace placeholder assets.
+
+## Image Lightbox Rule
+
+Clickable images should support an accessible enlarge view when the deck benefits from inspection.
+
+Rules:
+
+1. Clicking an image or screenshot opens a modal/lightbox above the stage, Agenda, top controls, and progress.
+2. The enlarged image should be centered, contained, and constrained to roughly `90vw` by `86vh`.
+3. The overlay should use a dark translucent backdrop and optional restrained blur.
+4. Close on overlay click, close button, and `Escape`.
+5. Provide `alt` text or equivalent `role="img"` / `aria-label` for non-`img` previews.
+6. Focus should move into the modal and return normal slide operation after close.
+7. Reduced motion should avoid zoom theatrics; use opacity, border, or surface feedback instead.
+
+## Video Playback Rule
+
+Videos should behave like presentation media, not background decoration.
+
+Rules:
+
+1. Do not autoplay video unless the user explicitly asks for autoplay or the video is muted and decorative.
+2. Provide visible play/pause, progress, volume when relevant, and fullscreen or enlarge affordances.
+3. Use a poster, cover frame, or fallback placeholder when no real video asset is available.
+4. Video frames should preserve aspect ratio and never resize the slide during playback.
+5. Closing an enlarged video or switching slides should pause playback.
+6. Video controls must be keyboard accessible and visually consistent with deck buttons.
+
+## Media Modal and Slide Navigation Rule
+
+Media modals should temporarily take interaction priority over slide navigation.
+
+Rules:
+
+1. When a media modal is open, left/right/up/down/page/space slide navigation should be blocked.
+2. `Escape` should close the media modal before it is treated as any deck-level command.
+3. Clicking media controls should not advance the slide.
+4. Closing the modal should restore normal keyboard slide navigation.
+5. Modal `z-index` must sit above pinned Agenda, top controls, progress, and the slide frame.
+6. Modal behavior should work in normal window mode and fullscreen mode.
+7. Switching slides should close the modal or at least pause media playback to avoid hidden audio/video continuing.
+
 ## Typography Standard
 
 For Chinese HTML presentation decks, use one high-quality Chinese sans-serif font stack across the whole app:

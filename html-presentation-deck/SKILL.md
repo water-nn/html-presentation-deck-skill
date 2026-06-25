@@ -389,6 +389,61 @@ Rules:
 5. If radial gradients are used, their transparent falloff must be broad and soft.
 6. Visual QA must check 1366x768 and fullscreen/simulated fullscreen for top-edge outlines and reduced-motion edge artifacts.
 
+## Equal Height Agenda Stage Rule
+
+Agenda and the main presentation stage must share the same vertical layout contract.
+
+Rules:
+
+1. Define shared tokens such as `--panel-gap`, `--deck-panel-top`, `--deck-panel-bottom`, and `--deck-panel-height` or equivalent.
+2. The left Agenda panel, right stage area, and visible slide frame should align to the same top and bottom edges in normal, fullscreen, and pinned Agenda modes.
+3. The gap between Agenda and the main stage should come from one token, not separate hard-coded offsets.
+4. Pinned Agenda may reduce available width, but must not make the whole slide tiny; content should reflow inside the right stage.
+5. `slide-frame`, stage, or canvas wrappers must use `transform: none` / no `zoom` as the default adaptation. Do not use whole-slide scale as the primary layout fix.
+6. Browser QA should measure or inspect Agenda height, stage height, slide-frame height, gap, and computed transform in normal and pinned states.
+
+## Media Lightbox Implementation Rule
+
+Media examples must be real interactive components, not static placeholder cards.
+
+Rules:
+
+1. Image components should render actual `img` assets or user-provided sources with `object-fit: contain` for screenshots/designs/charts and `object-fit: cover` only for atmospheric imagery.
+2. Clicking an image should open a centered lightbox above Agenda, top controls, and progress UI.
+3. Lightbox images must stay proportional and fit within the viewport, typically `max-width: 90vw` and `max-height: 86vh`.
+4. Lightboxes must close from overlay click, close button, and `Esc`.
+5. Video components should use a real `video` element with a local or user-provided source, poster/cover, play/pause, progress seek, volume, and enlarge controls.
+6. Closing a video modal or changing slides must pause playback.
+7. While an image or video modal is open, arrow keys must not accidentally change slides; `Esc` should close the modal first.
+8. Media cards, controls, and modal buttons need hover, active, and focus-visible feedback consistent with the deck's interaction language.
+
+## Long Content Scrollable Card Example Rule
+
+When a deck includes dense content, provide a working card-level scroll example instead of only documenting the idea.
+
+Rules:
+
+1. Include or support a `ScrollableCard`, `LongContentCard`, or equivalent component when dense cards are expected.
+2. Demonstrate at least one slide with equal-height cards where only the overflowing card scrolls internally.
+3. The page, app shell, stage, and slide frame must not scroll vertically for that slide.
+4. The scroll area must have an explicit height from layout, a fine low-contrast scrollbar, focus-visible state, and natural touchpad scrolling.
+5. Content that does not overflow should not show an unnecessary scrollbar.
+6. Card-level scrolling must not permanently capture keyboard slide navigation.
+7. If the dense content is too large even for a card, split the content across slides rather than shrinking the entire slide.
+
+## Outer Background Depth Rule
+
+The outer HTML/app background should be deep enough to support premium spatial light without becoming pure black or flat gray.
+
+Rules:
+
+1. Use a deep navy / blue-black base for AI, Agent, Codex, and workflow launch decks.
+2. Preserve restrained cyan/teal and muted violet/indigo glows so the stage has depth.
+3. Avoid pure black, hard top edges, visible mask seams, and flat gray dashboard backgrounds.
+4. Background motion should use opacity and transform, stay subtle, and respect `prefers-reduced-motion`.
+5. The outer shell should be visually darker than the slide stage and cards, so surfaces read as layered.
+6. QA should inspect default, fullscreen/simulated fullscreen, and tone variants to ensure experimental themes do not pollute the default baseline.
+
 ## Tone Role Correction Rule
 
 Tone presets must have clear roles.

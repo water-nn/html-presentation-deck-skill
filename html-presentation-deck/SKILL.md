@@ -1,4 +1,4 @@
----
+﻿---
 name: html-presentation-deck
 description: Create, redesign, or extend web-based presentation decks with slide navigation, fullscreen mode, table of contents, progress UI, responsive layouts, and motion. Use when Codex needs to turn a topic, outline, document, PPTX, screenshots, or an existing HTML/frontend project into an HTML presentation, React slide deck, Vite presentation, Tailwind/Framer Motion deck, or a deployable/exportable web slideshow.
 ---
@@ -1372,3 +1372,31 @@ For Vercel:
 - If missing, explain how to install it.
 - If logged in and deployment is authorized, deploy and write the resulting URL to `DEPLOY_URL.txt`.
 - If deployment cannot be completed, write `部署说明.md` or equivalent instructions.
+## Responsive Stage Width Rule
+
+When an HTML presentation has a pinned Agenda, TOC, inspector, or companion side panel, the main stage must use the remaining available width instead of keeping a dead fixed 16:9 width. Prefer CSS grid / absolute inset / container-query driven layout where `.deck-stage` and `.slide-frame` use `width: 100%`, `height: 100%`, `min-width: 0`, and `transform: none`. Do not solve this by globally scaling the entire slide with `scale()` or `zoom`; reflow typography, cards, charts, and media with `clamp()`, `minmax(0, 1fr)`, and component-level responsive rules.
+
+## Agenda No Horizontal Scroll Rule
+
+Agenda / TOC panels must never show a horizontal scrollbar. The panel, item list, item buttons, number cells, and title cells must use `min-width: 0`, `max-width: 100%`, `overflow-x: hidden` or `clip`, and single-line ellipsis for long titles. Long or truncated titles should expose a readable tooltip rendered outside the Agenda width calculation, preferably via a body-level portal or fixed-position overlay with high z-index. The tooltip must not stretch the Agenda panel.
+
+## Card Padding Safety Rule
+
+Cards, chart panels, media cards, scroll cards, callout panels, and interactive tiles must have safe internal padding. Define shared tokens such as `--card-padding-sm`, `--card-padding-md`, `--card-padding-lg`, and `--card-content-gap`, then apply them consistently. Text, chart labels, media captions, scrollable regions, and action rows must not sit flush against card edges.
+
+## Media Card Containment Rule
+
+Image and video previews must live inside a stable background card and a dedicated viewport such as `MediaCard > Header/Title > MediaViewport > Caption/Action Row`. The viewport should default to a stable aspect ratio, usually 16:9. Use `object-fit: contain` by default so screenshots, diagrams, and product recordings are fully visible; use `cover` only for decorative atmospheric imagery. Same-page media cards should align and stretch to equal visual height when placed in a grid.
+
+## True Centered Media Modal Rule
+
+Image lightboxes and video modals must be true centered overlays, not scaled versions of the original card position. Render the modal with `position: fixed; inset: 0`, ideally through a portal to `document.body`, and use a z-index above Agenda, topbar, progress, and slide content, commonly `9999` or higher. Use a dark scrim, backdrop blur, centered panel, top-right close control, overlay click close, and `Esc` close. Modal media should fit within `max-width: min(92vw, 1400px)` and `max-height: 86vh`. While a modal is open, block slide navigation keys so arrow keys do not flip slides.
+
+## Custom Video Controls Rule
+
+Do not rely only on default browser video controls for presentation decks. Provide a compact custom control bar with play/pause, current/total time, progress seeking, volume button, hover/focus vertical volume slider, enlarge/modal button, and a More menu. The More menu should include download when a source URL exists, playback speeds such as 0.5x / 1x / 1.5x / 2x / 3x, and Picture-in-Picture when the browser supports it. Speed buttons must update the actual `playbackRate`. If PiP or download is unavailable or blocked, show a graceful status instead of pretending success. Closing the modal or switching slides must pause active video.
+
+## Text Width Adaptation Rule
+
+Deck components must protect titles, subtitles, captions, and card text from overflow and awkward fixed-width wrapping. Set `min-width: 0` on grid/flex children and use `max-width: 100%`, `overflow-wrap: anywhere`, `word-break: normal`, and `text-wrap: pretty` where appropriate. Avoid fixed text widths that cause clipping, early wrapping, or layout pressure in fullscreen or pinned Agenda mode.
+

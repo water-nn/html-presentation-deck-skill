@@ -1432,3 +1432,23 @@ Charts in HTML PPT decks should provide lightweight hover/focus value feedback w
 
 For dark technology presentation decks, the outer HTML/body/root background should be at least as dark and intentional as the slide stage. Avoid a pale browser/page edge around the deck. Use a deeper layered base such as near-black navy, subtle radial glows, restrained gradients, and noise/grid effects only when they improve atmosphere without hurting readability. Respect `prefers-reduced-motion` for animated backgrounds.
 
+
+## Chart Plot Area Padding Rule
+
+When generating or optimizing chart slides, reserve explicit plot-area padding instead of drawing marks directly against the SVG or card edge. Line charts should keep separate `top`, `right`, `bottom`, and `left` padding values; the left padding must leave enough room for Y-axis labels before the first data point. Clamp point labels and chart tooltips inside the chart container so values do not overlap axes, legends, or card edges. Treat this as a presentation readability rule, not merely a chart implementation detail.
+
+## Agenda Item Safe Padding Rule
+
+Agenda / TOC panels must leave safe inner padding for item hover, active, focus-visible, border, glow, and shadow states. Agenda items should not touch the panel edge, should not create horizontal scrolling, and should not have hover rings clipped by `overflow`. If custom tooltips are used, avoid native `title` attributes and render only one tooltip system.
+
+## Card Header Stack Rule
+
+Chart cards, media cards, metric cards, and dense content cards should stack their header title, subtitle, note, and legend vertically by default. Do not force title and supporting metadata into a single row when the slide may be shown at 1366x768, pinned Agenda width, or fullscreen. Use wrapping, `min-width: 0`, and spacing tokens so headings remain readable and never look squeezed.
+
+## Video Controls Overlay Rule
+
+Video controls should sit inside the video viewport as a refined bottom overlay when that improves stage balance. The overlay must use theme-matched glass styling, stop click propagation so controls do not accidentally open the media modal, and keep volume and More popovers above the media card without clipping. Increase the video viewport height when needed so the overlay does not make the media feel cramped.
+
+## Premium Glass Gradient Rule
+
+Dark tech decks should share a small set of glass and gradient tokens across cards, Agenda, chart panels, modals, video controls, and tooltips. Prefer restrained translucent surfaces, subtle borders, blur, and low-opacity cyan/violet/mint glow. Do not mix unrelated panel backgrounds or cheap neon effects. The result should read as one polished presentation stage, not a collection of unrelated widgets.

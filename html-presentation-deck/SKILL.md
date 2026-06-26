@@ -1400,3 +1400,35 @@ Do not rely only on default browser video controls for presentation decks. Provi
 
 Deck components must protect titles, subtitles, captions, and card text from overflow and awkward fixed-width wrapping. Set `min-width: 0` on grid/flex children and use `max-width: 100%`, `overflow-wrap: anywhere`, `word-break: normal`, and `text-wrap: pretty` where appropriate. Avoid fixed text widths that cause clipping, early wrapping, or layout pressure in fullscreen or pinned Agenda mode.
 
+## Fullscreen Media Modal Rule
+
+Image lightboxes and video modals must be rendered inside the current fullscreen-capable deck root, not outside the fullscreen context. Prefer a dedicated root such as `#deck-modal-root` inside `.deck-app`; fall back to `document.body` only when no deck root exists. The modal overlay must use `position: fixed`, `inset: 0`, `width: 100dvw`, `height: 100dvh`, a z-index above navigation/Agenda/progress, and true centered alignment. The visible panel and media must remain inside the viewport in normal window mode and fullscreen mode. Closing must work through Esc, overlay click, and an icon close button. While a modal is open, slide arrow navigation should not accidentally flip slides.
+
+## Video Controls Popover Rule
+
+Custom video controls must keep popovers visually integrated. The volume button should reveal one unified glass popover containing both the background panel and the vertical slider; the slider must not float separately. The More menu must open on hover and keyboard focus, remain open while the pointer is over the menu, float upward, avoid clipping by the media card, and sit above the media layer. Popovers must use theme-consistent dark translucent surfaces, rounded corners, fine borders, readable type, and clear hover/focus states.
+
+## Video Controls Icon Rule
+
+Video control buttons should default to icon-only controls rather than English text labels. Play, pause, volume, mute, enlarge, More, close, download, and Picture-in-Picture controls must use a consistent icon style and include `aria-label` and `title`. Do not ship visible text buttons such as `Play`, `Pause`, `Vol`, `Max`, `More`, `Close`, `Download`, `Speed`, or `PiP` in a localized deck UI. More-menu content must follow the deck language; for Chinese decks use Chinese labels such as `下载视频`, `播放速度`, `画中画`, and speed labels like `0.5x 慢速`, `1x 正常`, `1.5x 快速`, `2x 更快`, `3x 极快`. Numeric speed tokens may remain, but pair them with localized meaning. The control bar must look like a designed deck component, not raw browser-default controls.
+
+## Single Agenda Tooltip Rule
+
+Agenda / TOC items should expose one tooltip system only. Do not add native `title` attributes to Agenda items when a custom tooltip is already used, because that creates duplicate hover bubbles. Render the custom tooltip outside the Agenda layout calculation, usually with a fixed-position portal, small dark translucent styling, high z-index, and no horizontal scrollbar pressure.
+
+## Scroll Fade Mask Quality Rule
+
+Scrollable cards may use bottom fade masks, but the mask must be subtle and theme-colored. Avoid opaque black rectangles, hard edges, or overlays that look like broken blocks under hovered cards. Use transparent-to-surface gradients, low opacity, rounded lower corners, and reduced-motion-friendly transitions. Long scroll cards may show a stronger fade than short cards, but it should never overpower content.
+
+## Slide Header Width Rule
+
+Slide headers, subtitles, closing statements, and major narrative headlines should use the available stage content width. Avoid narrow fixed `max-width` values that make titles wrap too early or create a cramped column while the rest of the slide is wide. Use `width: 100%`, `max-width: none` where appropriate, `min-width: 0`, `text-wrap: balance` or `pretty`, and responsive `clamp()` type sizing.
+
+## Chart Tooltip Interaction Rule
+
+Charts in HTML PPT decks should provide lightweight hover/focus value feedback without pulling in a heavy chart library unless the project already uses one. Bars, horizontal bars, line points, donut segments, and similar marks should show a small theme-consistent tooltip with label, series, value, and unit. Tooltips must be positioned within or near the chart card, avoid clipping, use pointer-safe behavior, and preserve keyboard/focus accessibility where practical.
+
+## Deeper Page Background Rule
+
+For dark technology presentation decks, the outer HTML/body/root background should be at least as dark and intentional as the slide stage. Avoid a pale browser/page edge around the deck. Use a deeper layered base such as near-black navy, subtle radial glows, restrained gradients, and noise/grid effects only when they improve atmosphere without hurting readability. Respect `prefers-reduced-motion` for animated backgrounds.
+
